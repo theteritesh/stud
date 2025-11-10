@@ -33,17 +33,23 @@ public class ExamInvitation {
 
     private LocalDateTime checkInTime;
     private LocalDateTime checkOutTime;
+    
+    private Integer score;
+    private Integer totalQuestionsInExam;
 
     public ExamInvitation() {
     }
 
-    public ExamInvitation(String invitationId, Student student, Exam exam, InvitationStatus status, LocalDateTime checkInTime, LocalDateTime checkOutTime) {
+    public ExamInvitation(String invitationId, Student student, Exam exam, InvitationStatus status, 
+    		LocalDateTime checkInTime, LocalDateTime checkOutTime,Integer score, Integer totalQuestionsInExam) {
         this.invitationId = invitationId;
         this.student = student;
         this.exam = exam;
         this.status = status;
         this.checkInTime = checkInTime;
         this.checkOutTime = checkOutTime;
+        this.score = score;
+        this.totalQuestionsInExam = totalQuestionsInExam;
     }
 
     // --- Getters and Setters ---
@@ -94,5 +100,21 @@ public class ExamInvitation {
 
     public void setCheckOutTime(LocalDateTime checkOutTime) {
         this.checkOutTime = checkOutTime;
+    }
+    
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
+    public Integer getTotalQuestionsInExam() {
+        return totalQuestionsInExam;
+    }
+
+    public void setTotalQuestionsInExam(Integer totalQuestionsInExam) {
+        this.totalQuestionsInExam = totalQuestionsInExam;
     }
 }

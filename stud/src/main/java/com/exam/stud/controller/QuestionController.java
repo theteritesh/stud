@@ -4,6 +4,10 @@ import com.exam.stud.model.Question;
 import com.exam.stud.service.QuestionService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +30,9 @@ public class QuestionController {
     }
 
     @GetMapping("/getAllQuestions")
-    public ResponseEntity<List<Question>> getAllQuestions() {
-        List<Question> questions = questionService.getAllQuestions();
+    public ResponseEntity<Page<Question>> getAllQuestions(
+    		@PageableDefault(size = 10, sort = "questionId", direction = Direction.DESC) Pageable pageable) {
+        Page<Question> questions = questionService.getAllQuestions(pageable);
         return ResponseEntity.ok(questions);
     }
 

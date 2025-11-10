@@ -4,6 +4,10 @@ import com.exam.stud.model.Exam;
 import com.exam.stud.service.ExamService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,9 +30,11 @@ public class ExamController {
     }
 
     @GetMapping("/getAllExams")
-    public ResponseEntity<List<Exam>> getAllExams() {
-        List<Exam> exams = examService.getAllExams();
-        return ResponseEntity.ok(exams);
+    public ResponseEntity<Page<Exam>> getAllExams(
+            @PageableDefault(size = 10, sort = "examId", direction = Direction.DESC) Pageable pageable) {
+        
+        Page<Exam> examsPage = examService.getAllExams(pageable);
+        return ResponseEntity.ok(examsPage);
     }
 
     @GetMapping("/getExamById/{examId}")

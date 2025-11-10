@@ -1,6 +1,5 @@
 package com.exam.stud.repository;
 
-import com.exam.stud.model.Exam;
 import com.exam.stud.model.ExamInvitation;
 import com.exam.stud.model.InvitationStatus;
 import com.exam.stud.model.Student;
@@ -27,5 +26,9 @@ public interface ExamInvitationRepository extends JpaRepository<ExamInvitation, 
     List<Student> findAttendingStudentsByExamId(@Param("examId") String examId, @Param("statuses") List<InvitationStatus> statuses);
 
 	Optional<ExamInvitation> findByStudentStudentIdAndExamExamId(String studentId, String examId);
+	
+	List<ExamInvitation> findByStudentStudentId(String studentId);
+	
+	List<ExamInvitation> findByExamExamId(String examId);
 
 }

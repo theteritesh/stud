@@ -108,7 +108,9 @@ public class ExamSetupService {
                     exam,                 
                     InvitationStatus.INVITED, 
                     null,                  
-                    null                   
+                    null,
+                    null,                  
+                    null
                 );
                 
                 newInvitations.add(newInvitation);

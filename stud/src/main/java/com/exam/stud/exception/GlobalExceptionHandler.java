@@ -34,6 +34,19 @@ public class GlobalExceptionHandler {
         
         return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
     }
+    
+    @ExceptionHandler(ClientRequestException.class)
+    public ResponseEntity<ErrorResponse> handleClientRequestException(ClientRequestException ex, WebRequest request) {
+        
+        ErrorResponse errorResponse = new ErrorResponse(
+            HttpStatus.BAD_REQUEST.value(), // 400
+            "Bad Request",
+            ex.getMessage(), // The user-friendly message
+            request.getDescription(false).replace("uri=", "")
+        );
+        
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGlobalException(Exception ex, WebRequest request) {
