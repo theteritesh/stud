@@ -5,11 +5,11 @@ import com.exam.stud.dto.QuestionResultDTO;
 import com.exam.stud.dto.ResultStatus;
 import com.exam.stud.dto.StudentExamResultDTO;
 import com.exam.stud.dto.StudentPerformanceDTO;
+import com.exam.stud.enums.InvitationStatus;
 import com.exam.stud.exception.ClientRequestException;
 import com.exam.stud.exception.ResourceNotFoundException;
 import com.exam.stud.model.Exam;
 import com.exam.stud.model.ExamInvitation;
-import com.exam.stud.model.InvitationStatus;
 import com.exam.stud.model.Question;
 import com.exam.stud.model.Student;
 import com.exam.stud.model.StudentResponse;
@@ -69,7 +69,7 @@ public class ReportingService {
         report.put("studentId", student.getStudentId());
         report.put("firstName", student.getFirstName());
         report.put("lastName", student.getLastName());
-        report.put("email", student.getEmail());
+        report.put("email", student.getUser().getEmail());
         report.put("totalExamsInvited", totalInvited);
         report.put("totalExamsAttended", totalAttended);
 

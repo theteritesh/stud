@@ -1,4 +1,4 @@
-package com.exam.stud.model;
+package com.exam.stud.enums;
 
 public enum InvitationStatus {
     INVITED,

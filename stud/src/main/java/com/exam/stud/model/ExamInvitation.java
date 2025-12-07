@@ -3,6 +3,8 @@ package com.exam.stud.model;
 import java.time.LocalDateTime;
 import org.hibernate.annotations.UuidGenerator;
 
+import com.exam.stud.enums.InvitationStatus;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,9 +13,13 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
+@AllArgsConstructor
 @Entity
-public class ExamInvitation {
+public class ExamInvitation extends BaseEntity{
 
     @Id
     @UuidGenerator(style = UuidGenerator.Style.TIME)
@@ -36,85 +42,4 @@ public class ExamInvitation {
     
     private Integer score;
     private Integer totalQuestionsInExam;
-
-    public ExamInvitation() {
-    }
-
-    public ExamInvitation(String invitationId, Student student, Exam exam, InvitationStatus status, 
-    		LocalDateTime checkInTime, LocalDateTime checkOutTime,Integer score, Integer totalQuestionsInExam) {
-        this.invitationId = invitationId;
-        this.student = student;
-        this.exam = exam;
-        this.status = status;
-        this.checkInTime = checkInTime;
-        this.checkOutTime = checkOutTime;
-        this.score = score;
-        this.totalQuestionsInExam = totalQuestionsInExam;
-    }
-
-    // --- Getters and Setters ---
-
-    public String getInvitationId() {
-        return invitationId;
-    }
-
-    public void setInvitationId(String invitationId) {
-        this.invitationId = invitationId;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-    public Exam getExam() {
-        return exam;
-    }
-
-    public void setExam(Exam exam) {
-        this.exam = exam;
-    }
-
-    public InvitationStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(InvitationStatus status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getCheckInTime() {
-        return checkInTime;
-    }
-
-    public void setCheckInTime(LocalDateTime checkInTime) {
-        this.checkInTime = checkInTime;
-    }
-
-    public LocalDateTime getCheckOutTime() {
-        return checkOutTime;
-    }
-
-    public void setCheckOutTime(LocalDateTime checkOutTime) {
-        this.checkOutTime = checkOutTime;
-    }
-    
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
-
-    public Integer getTotalQuestionsInExam() {
-        return totalQuestionsInExam;
-    }
-
-    public void setTotalQuestionsInExam(Integer totalQuestionsInExam) {
-        this.totalQuestionsInExam = totalQuestionsInExam;
-    }
 }

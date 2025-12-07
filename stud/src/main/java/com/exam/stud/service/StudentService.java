@@ -24,9 +24,9 @@ public class StudentService {
     @Transactional
     public Student createStudent(Student student) {
         
-        Optional<Student> existingStudent = studentRepository.findByEmail(student.getEmail());
+        Optional<Student> existingStudent = studentRepository.findByEmail(student.getUser().getEmail());
         if (existingStudent.isPresent()) {
-            throw new DuplicateResourceException("A student with email " + student.getEmail() + " already exists.");
+            throw new DuplicateResourceException("A student with email " + student.getUser().getEmail() + " already exists.");
         }
         return studentRepository.save(student);
     }
@@ -49,7 +49,7 @@ public class StudentService {
         existingStudent.setFirstName(updatedStudentData.getFirstName());
         existingStudent.setLastName(updatedStudentData.getLastName());
         existingStudent.setGender(updatedStudentData.getGender());
-        existingStudent.setEmail(updatedStudentData.getEmail());
+//        existingStudent.setEmail(updatedStudentData.getUser().getEmail());
 
         // Save the updated student
         return studentRepository.save(existingStudent);

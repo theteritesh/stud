@@ -1,6 +1,6 @@
 package com.exam.stud.dto;
 
-import com.exam.stud.model.InvitationStatus;
+import com.exam.stud.enums.InvitationStatus;
 
 public class StudentPerformanceDTO {
 

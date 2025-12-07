@@ -10,7 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class StudentResponse {
+public class StudentResponse extends BaseEntity{
 
     @Id
     @UuidGenerator(style = UuidGenerator.Style.TIME)

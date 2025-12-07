@@ -1,7 +1,8 @@
 package com.exam.stud.dto;
 
-import com.exam.stud.model.InvitationStatus;
 import java.time.LocalDateTime;
+
+import com.exam.stud.enums.InvitationStatus;
 
 public class ExamInvitationDTO {
 

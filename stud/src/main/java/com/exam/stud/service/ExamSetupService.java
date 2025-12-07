@@ -1,11 +1,11 @@
 package com.exam.stud.service;
 
+import com.exam.stud.enums.InvitationStatus;
 import com.exam.stud.exception.DuplicateResourceException;
 import com.exam.stud.exception.ResourceNotFoundException;
 import com.exam.stud.model.Exam;
 import com.exam.stud.model.ExamInvitation;
 import com.exam.stud.model.ExamQuestion;
-import com.exam.stud.model.InvitationStatus;
 import com.exam.stud.model.Question;
 import com.exam.stud.model.Student;
 import com.exam.stud.repository.ExamInvitationRepository;

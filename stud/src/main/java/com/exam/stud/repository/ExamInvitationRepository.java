@@ -1,7 +1,7 @@
 package com.exam.stud.repository;
 
+import com.exam.stud.enums.InvitationStatus;
 import com.exam.stud.model.ExamInvitation;
-import com.exam.stud.model.InvitationStatus;
 import com.exam.stud.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
