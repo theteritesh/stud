@@ -24,6 +24,9 @@ public abstract class BaseEntity {
     @LastModifiedDate
     @Column(nullable = false)
     private LocalDateTime updatedAt;
+    
+    private String firstName;
+    private String lastName;
 
     @CreatedBy
     @Column(updatable = false)
@@ -31,4 +34,9 @@ public abstract class BaseEntity {
 
     @LastModifiedBy
     private String updatedBy;
+
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 }

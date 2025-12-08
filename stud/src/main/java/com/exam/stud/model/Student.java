@@ -22,8 +22,6 @@ public class Student extends BaseEntity{
     @Id
     @UuidGenerator(style = UuidGenerator.Style.TIME)
     private String studentId;
-    private String firstName;
-    private String lastName;
     private String gender;
     
     @OneToOne(cascade = CascadeType.ALL) // If you delete Student, delete User too (optional)

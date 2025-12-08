@@ -73,14 +73,14 @@ public class AuthService {
         User user = new User();
         user.setEmail(request.getEmail());
         user.setPassword(encoder.encode(request.getPassword())); // Encrypt password!
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
         user.setRole(UserRole.STUDENT);
         
         // We don't save 'user' yet. We save it via the 'Student' entity to keep the transaction atomic.
 
         // 3. Create the Student (Profile)
         Student student = new Student();
-        student.setFirstName(request.getFirstName());
-        student.setLastName(request.getLastName());
         student.setGender(request.getGender());
         student.setUser(user); // Link them!
 
