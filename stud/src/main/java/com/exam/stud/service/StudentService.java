@@ -24,7 +24,7 @@ public class StudentService {
     @Transactional
     public Student createStudent(Student student) {
         
-        Optional<Student> existingStudent = studentRepository.findByEmail(student.getUser().getEmail());
+        Optional<Student> existingStudent = studentRepository.findByUserEmail(student.getUser().getEmail());
         if (existingStudent.isPresent()) {
             throw new DuplicateResourceException("A student with email " + student.getUser().getEmail() + " already exists.");
         }

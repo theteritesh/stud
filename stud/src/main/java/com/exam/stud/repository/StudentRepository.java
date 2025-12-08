@@ -9,5 +9,5 @@ import com.exam.stud.model.Student;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, String> {
-    Optional<Student> findByEmail(String email);
+	Optional<Student> findByUserEmail(String email);
 }
