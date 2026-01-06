@@ -44,11 +44,8 @@ public class SecurityConfig {
 
             // 3. Define URL Rules
             .authorizeHttpRequests(auth -> auth
-                // Allow Login/Register endpoints to everyone
-                .requestMatchers("/auth/**").permitAll() 
-                // Allow Swagger UI (if you add it later)
-                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
-                // Lock everything else
+                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**","/swagger-ui.html").permitAll()
                 .anyRequest().authenticated()
             )
 

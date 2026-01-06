@@ -3,6 +3,11 @@ package com.exam.stud.controller;
 import com.exam.stud.model.Exam;
 import com.exam.stud.service.ExamService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +15,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -18,18 +24,30 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/exams")
+@Tag(name = "Exam Management", description = "APIs for creating, updating, and fetching exams")
 public class ExamController {
 
     @Autowired
     private ExamService examService;
 
     @PostMapping("/createExam")
+    @PreAuthorize("hasAnyRole('TEACHER', 'ADMIN')")
+    @Operation(
+    	    summary = "Create a new Exam", 
+    	    description = "Allows Teachers or Admins to create a new exam. Requires a valid JWT token."
+    	)
+    	@ApiResponses(value = {
+    	    @ApiResponse(responseCode = "201", description = "Exam created successfully"),
+    	    @ApiResponse(responseCode = "400", description = "Invalid input data (e.g., missing title)"),
+    	    @ApiResponse(responseCode = "500", description = "Access Denied (User is not a Teacher/Admin)")
+    	})
     public ResponseEntity<Exam> createExam(@RequestBody Exam exam) {
         Exam newExam = examService.createExam(exam);
         return new ResponseEntity<>(newExam, HttpStatus.CREATED);
     }
 
     @GetMapping("/getAllExams")
+    @PreAuthorize("hasAnyRole('TEACHER', 'ADMIN')")
     public ResponseEntity<Page<Exam>> getAllExams(
             @PageableDefault(size = 10, sort = "examId", direction = Direction.DESC) Pageable pageable) {
         
@@ -38,18 +56,21 @@ public class ExamController {
     }
 
     @GetMapping("/getExamById/{examId}")
+    @PreAuthorize("hasAnyRole('TEACHER', 'ADMIN')")
     public ResponseEntity<Exam> getExamById(@PathVariable("examId") String examId) {
         Exam exam = examService.getExamById(examId);
         return ResponseEntity.ok(exam);
     }
 
     @PutMapping("/updateExam/{examId}")
+    @PreAuthorize("hasAnyRole('TEACHER', 'ADMIN')")
     public ResponseEntity<Exam> updateExam(@PathVariable("examId") String examId, @RequestBody Exam examDetails) {
         Exam updatedExam = examService.updateExam(examId, examDetails);
         return ResponseEntity.ok(updatedExam);
     }
 
     @DeleteMapping("/deleteExamById/{examId}")
+    @PreAuthorize("hasAnyRole('TEACHER', 'ADMIN')")
     public ResponseEntity<?> deleteExam(@PathVariable("examId") String examId) {
         examService.deleteExam(examId);
         

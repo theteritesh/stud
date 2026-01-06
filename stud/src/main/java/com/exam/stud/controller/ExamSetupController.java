@@ -8,6 +8,7 @@ import com.exam.stud.service.ExamSetupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -22,6 +23,7 @@ public class ExamSetupController {
     private ExamSetupService examSetupService;
 
     @PostMapping("/assignQuestions/{examId}")
+    @PreAuthorize("hasAnyRole('TEACHER', 'ADMIN')")
     public ResponseEntity<List<ExamQuestion>> assignMultipleQuestionsToExam(
             @PathVariable String examId,
             @RequestBody List<String> questionIds) {
